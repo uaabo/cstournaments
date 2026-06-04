@@ -1,0 +1,145 @@
+.rankings-table {
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.rankings-header {
+  display: grid;
+  grid-template-columns: 56px 1fr 80px 80px 72px 180px;
+  align-items: center;
+  padding: 10px 20px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.rk-col {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.rk-col--pos { text-align: center; }
+.rk-col--num { text-align: center; }
+.rk-col--points { text-align: right; }
+
+.rankings-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 80px 80px 72px 180px;
+  align-items: center;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--ease);
+  animation: fadeInUp 0.35s ease both;
+}
+
+.rankings-row:last-child { border-bottom: none; }
+.rankings-row:hover { background: var(--bg-card-hover); }
+.rankings-row--top3 { border-left: 3px solid var(--accent); }
+
+.rank-medal { font-size: 20px; display: flex; justify-content: center; }
+.rank-num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.06em;
+}
+
+.rankings-team { display: flex; align-items: center; gap: 10px; }
+.rankings-team-logo { font-size: 24px; line-height: 1; flex-shrink: 0; }
+.rankings-team-info { display: flex; flex-direction: column; gap: 1px; }
+
+.rankings-team-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.rankings-team-tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.rankings-wins {
+  color: #4ade80;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.rankings-losses {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.rk-col--num:not(.rankings-wins):not(.rankings-losses) {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.rankings-points-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.rankings-points-value {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.rankings-points-bar {
+  width: 110px;
+  height: 2px;
+  background: var(--border-strong);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.rankings-points-fill {
+  height: 100%;
+  border-radius: 1px;
+  transition: width 0.8s ease;
+}
+
+.rankings-legend {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 768px) {
+  .rankings-header, .rankings-row {
+    grid-template-columns: 44px 1fr 64px 140px;
+  }
+  .rk-col--num:nth-child(4),
+  .rk-col--num:nth-child(5) { display: none; }
+  .rankings-wins, .rankings-losses { display: none; }
+  .rankings-points-bar { width: 70px; }
+}

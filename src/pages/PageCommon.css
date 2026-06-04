@@ -1,0 +1,101 @@
+/* ── FILTER TABS ── */
+.filter-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--ease);
+}
+
+.filter-tab:last-child { border-right: none; }
+.filter-tab:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+
+.filter-tab--active {
+  background: var(--accent);
+  color: #fff;
+  border-right-color: var(--accent-hover);
+}
+
+.filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 16px;
+  padding: 0 5px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+  font-size: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.filter-tab--active .filter-count { background: rgba(255,255,255,0.25); }
+
+.filter-tab__live-dot {
+  width: 5px; height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 80px 20px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+}
+
+.empty-state span { font-size: 44px; opacity: 0.35; }
+
+.empty-state p {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .filter-tabs { width: 100%; }
+  .filter-tab { flex: 1; justify-content: center; padding: 9px 10px; }
+}
+
+/* ── API Loading ── */
+.api-loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  animation: fadeIn 0.4s ease;
+}

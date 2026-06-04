@@ -1,0 +1,105 @@
+.footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  margin-top: 0;
+}
+
+.footer__inner { padding: 48px 0 0; }
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.footer__logo span:last-child { color: var(--accent); }
+
+.footer__tagline {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.65;
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+}
+
+.footer__nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.footer__col h4 {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer__col a {
+  display: block;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 4px 0;
+  transition: color var(--ease);
+}
+
+.footer__col a:hover { color: var(--accent); }
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  gap: 16px;
+}
+
+.footer__copy {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+.footer__legal { display: flex; gap: 20px; }
+
+.footer__legal a {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  transition: color var(--ease);
+}
+
+.footer__legal a:hover { color: var(--text-secondary); }
+
+@media (max-width: 900px) {
+  .footer__top { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 600px) {
+  .footer__nav { grid-template-columns: repeat(2, 1fr); }
+  .footer__bottom { flex-direction: column; text-align: center; }
+}

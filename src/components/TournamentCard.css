@@ -1,0 +1,105 @@
+.t-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.t-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.t-card__logo { font-size: 26px; flex-shrink: 0; line-height: 1; }
+
+.t-card__info { flex: 1; min-width: 0; }
+
+.t-card__name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.t-card__organizer {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Tier */
+.t-card__tier {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tier-color, var(--text-muted));
+  border: 1px solid var(--tier-color, var(--border));
+  padding: 2px 7px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+/* Stats */
+.t-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.t-card__stat { display: flex; flex-direction: column; gap: 2px; }
+
+.t-card__stat-label {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.t-card__stat-value {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.t-card__stat-value--prize { color: var(--accent); }
+
+.t-card__stat-value--sm {
+  font-size: 12px;
+  font-family: var(--font-display);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Footer */
+.t-card__footer { display: flex; flex-direction: column; gap: 5px; }
+
+.t-card__dates, .t-card__location, .t-card__winner {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
+.t-card__winner { color: var(--text-primary); font-weight: 700; }
+.t-card__icon { font-size: 13px; flex-shrink: 0; }
