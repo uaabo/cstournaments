@@ -35,7 +35,23 @@ export function transformMatch(m) {
     date: m.begin_at || m.scheduled_at,
     map: m.games?.[0]?.map?.name || "TBD",
     status: isLive ? "live" : isFinished ? "finished" : "upcoming",
-    stream_url: m.streams_list?.[0]?.raw_url || "#",
+    stream_url: (() => {
+      const streams = m.streams_list || [];
+      // 1. stream oficial em inglês
+      const officialEn = streams.find(s => s.official && s.language === 'en');
+      if (officialEn) return officialEn.raw_url;
+      // 2. qualquer stream oficial
+      const official = streams.find(s => s.official);
+      if (official) return official.raw_url;
+      // 3. stream em inglês
+      const english = streams.find(s => s.language === 'en');
+      if (english) return english.raw_url;
+      // 4. primeira stream que não seja russa
+      const nonRu = streams.find(s => s.language !== 'ru');
+      if (nonRu) return nonRu.raw_url;
+      // 5. qualquer stream
+      return streams[0]?.raw_url || '#';
+    })(),
     format: m.match_type === "best_of" ? `BO${m.number_of_games}` : m.match_type || "BO3",
     total_maps: m.number_of_games || 3,
     winner: isFinished ? (m.winner?.name || null) : null,
