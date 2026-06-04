@@ -37,19 +37,32 @@ export function transformMatch(m) {
     status: isLive ? "live" : isFinished ? "finished" : "upcoming",
     stream_url: (() => {
       const streams = m.streams_list || [];
-      // 1. stream oficial em inglês
+      const isTwitch = s => s.raw_url?.includes('twitch.tv');
+      // 1. oficial + inglês + twitch
+      const best = streams.find(s => s.official && s.language === 'en' && isTwitch(s));
+      if (best) return best.raw_url;
+      // 2. oficial + inglês (qualquer plataforma)
       const officialEn = streams.find(s => s.official && s.language === 'en');
       if (officialEn) return officialEn.raw_url;
-      // 2. qualquer stream oficial
+      // 3. oficial + twitch
+      const officialTwitch = streams.find(s => s.official && isTwitch(s));
+      if (officialTwitch) return officialTwitch.raw_url;
+      // 4. qualquer oficial
       const official = streams.find(s => s.official);
       if (official) return official.raw_url;
-      // 3. stream em inglês
+      // 5. inglês + twitch
+      const enTwitch = streams.find(s => s.language === 'en' && isTwitch(s));
+      if (enTwitch) return enTwitch.raw_url;
+      // 6. inglês
       const english = streams.find(s => s.language === 'en');
       if (english) return english.raw_url;
-      // 4. primeira stream que não seja russa
+      // 7. twitch não russa
+      const twitch = streams.find(s => isTwitch(s) && s.language !== 'ru');
+      if (twitch) return twitch.raw_url;
+      // 8. qualquer não russa
       const nonRu = streams.find(s => s.language !== 'ru');
       if (nonRu) return nonRu.raw_url;
-      // 5. qualquer stream
+      // 9. qualquer stream
       return streams[0]?.raw_url || '#';
     })(),
     format: m.match_type === "best_of" ? `BO${m.number_of_games}` : m.match_type || "BO3",
