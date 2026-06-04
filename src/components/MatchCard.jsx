@@ -73,7 +73,7 @@ export default function MatchCard({ match }) {
         </span>
         <span className="match-card__format">{match.format}</span>
         {(isLive || isUpcoming) && (
-          <a href={match.stream_url} className="match-card__watch-btn">
+          <a href={match.stream_url} className="match-card__watch-btn" target="_blank" rel="noopener noreferrer">
             ▶ Assistir
           </a>
         )}
