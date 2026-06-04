@@ -4,7 +4,7 @@
 // =============================================
 
 // URL do teu Worker — muda após deploy
-const WORKER_URL = "cstournaments-api.uaboking.workers.dev";
+const WORKER_URL = "https://cstournaments-api.uaboking.workers.dev";
 
 // Timeout para pedidos (ms)
 const TIMEOUT = 8000;

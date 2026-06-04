@@ -1,6 +1,5 @@
 import './MatchCard.css'
 
-// Formats a date/time string to a readable format
 function formatDate(dateStr) {
   const d = new Date(dateStr)
   return d.toLocaleDateString('pt-PT', { weekday: 'short', day: '2-digit', month: 'short' })
@@ -11,11 +10,23 @@ function formatTime(dateStr) {
   return d.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' })
 }
 
+function TeamBlock({ team, winner, side }) {
+  const isWinner = winner === team.name
+  const isLoser = winner && winner !== team.name
+  return (
+    <div className={`match-card__team match-card__team--${side} ${isWinner ? 'match-card__team--winner' : ''} ${isLoser ? 'match-card__team--loser' : ''}`}>
+      {team.logo
+        ? <img className="match-card__team-logo" src={team.logo} alt={team.name} />
+        : <span className="match-card__team-logo match-card__team-logo--placeholder">{team.name.slice(0, 2)}</span>}
+      <span className="match-card__team-name">{team.name}</span>
+    </div>
+  )
+}
+
 export default function MatchCard({ match }) {
   const isLive = match.status === 'live'
   const isFinished = match.status === 'finished'
   const isUpcoming = match.status === 'upcoming'
-
   const winner = isFinished ? match.winner : null
 
   return (
@@ -30,11 +41,7 @@ export default function MatchCard({ match }) {
 
       {/* Teams row */}
       <div className="match-card__teams">
-        {/* Team 1 */}
-        <div className={`match-card__team ${winner === match.team1.name ? 'match-card__team--winner' : ''} ${winner && winner !== match.team1.name ? 'match-card__team--loser' : ''}`}>
-          <span className="match-card__team-logo">{match.team1.logo}</span>
-          <span className="match-card__team-name">{match.team1.name}</span>
-        </div>
+        <TeamBlock team={match.team1} winner={winner} side="left" />
 
         {/* Score / VS */}
         <div className="match-card__score">
@@ -56,17 +63,13 @@ export default function MatchCard({ match }) {
           )}
         </div>
 
-        {/* Team 2 */}
-        <div className={`match-card__team match-card__team--right ${winner === match.team2.name ? 'match-card__team--winner' : ''} ${winner && winner !== match.team2.name ? 'match-card__team--loser' : ''}`}>
-          <span className="match-card__team-name">{match.team2.name}</span>
-          <span className="match-card__team-logo">{match.team2.logo}</span>
-        </div>
+        <TeamBlock team={match.team2} winner={winner} side="right" />
       </div>
 
       {/* Footer */}
       <div className="match-card__footer">
         <span className="match-card__meta">
-          {isLive ? `Mapa ${match.maps_played}/${match.total_maps} · ${match.map}` : isFinished ? match.map : formatDate(match.date)}
+          {isLive ? `Mapa ${match.score1 + match.score2 + 1}/${match.total_maps}` : isFinished ? match.map : formatDate(match.date)}
         </span>
         <span className="match-card__format">{match.format}</span>
         {(isLive || isUpcoming) && (

@@ -37,6 +37,7 @@ export function transformMatch(m) {
     status: isLive ? "live" : isFinished ? "finished" : "upcoming",
     stream_url: m.streams_list?.[0]?.raw_url || "#",
     format: m.match_type === "best_of" ? `BO${m.number_of_games}` : m.match_type || "BO3",
+    total_maps: m.number_of_games || 3,
     winner: isFinished ? (m.winner?.name || null) : null,
   };
 }
